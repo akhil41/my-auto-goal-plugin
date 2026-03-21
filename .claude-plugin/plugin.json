@@ -1,0 +1,9 @@
+{
+  "name": "my-auto-goal-plugin",
+  "version": "1.2.0",
+  "description": "Autonomous goal-achievement loop inspired by karpathy/autoresearch. Supports research, code, debug, app, content, and web-seo domains with objective metrics, rubric-based scoring, and time-bounded iterations.",
+  "author": {
+    "name": "Akhil"
+  },
+  "keywords": ["autonomous", "research", "auto-goal", "autoresearch", "loop", "iteration", "debug", "debugging"]
+}

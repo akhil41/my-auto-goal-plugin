@@ -1,0 +1,14 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore editor files
+*.swp
+*.swo
+*~
+
+# Ignore IDE directories
+.idea/
+.vscode/
+
+# Ignore session directories created by the plugin
+.autogoal-*/
