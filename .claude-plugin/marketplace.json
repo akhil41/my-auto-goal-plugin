@@ -1,7 +1,9 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "my-auto-goal-plugin",
-  "description": "Autonomous goal-achievement loop plugins",
+  "metadata": {
+    "description": "Autonomous goal-achievement loop plugins"
+  },
   "owner": {
     "name": "Akhil",
     "url": "https://github.com/akhil41"
@@ -10,8 +12,10 @@
     {
       "name": "my-auto-goal-plugin",
       "description": "Autonomous goal-achievement loop for research, code, debug, app, content, and web-seo work",
-      "source": ".",
-      "version": "1.4.0"
+      "source": "./",
+      "version": "1.4.0",
+      "category": "productivity",
+      "tags": ["autonomous", "research", "autoresearch", "loop", "goal"]
     }
   ]
 }
