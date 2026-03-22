@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "my-auto-goal",
+  "name": "my-auto-goal-plugin",
   "description": "Autonomous goal-achievement loop plugins",
   "owner": {
     "name": "Akhil",
@@ -10,8 +10,8 @@
     {
       "name": "my-auto-goal-plugin",
       "description": "Autonomous goal-achievement loop for research, code, debug, app, content, and web-seo work",
-      "source": "./",
-      "version": "1.2.0"
+      "source": ".",
+      "version": "1.4.0"
     }
   ]
 }
