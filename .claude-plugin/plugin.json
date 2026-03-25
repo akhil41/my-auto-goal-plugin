@@ -1,13 +1,19 @@
 {
   "name": "my-auto-goal-plugin",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Autonomous goal-achievement loop inspired by karpathy/autoresearch. Supports research, code, debug, app, content, and web-seo domains with objective metrics, rubric-based scoring, and time-bounded iterations.",
   "author": {
-    "name": "Akhil"
+    "name": "Akhil",
+    "url": "https://github.com/akhil41"
   },
+  "homepage": "https://github.com/akhil41/my-auto-goal-plugin",
+  "repository": "https://github.com/akhil41/my-auto-goal-plugin",
+  "license": "MIT",
   "keywords": ["autonomous", "research", "auto-goal", "autoresearch", "loop", "iteration", "debug", "debugging"],
-  "commands": "commands",
-  "skills": ".claude/skills",
+  "skills": "./.claude/skills",
+  "commands": [
+    "./commands/my-auto-goal.md"
+  ],
   "permissions": {
     "allow": [
       "WebSearch",
