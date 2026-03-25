@@ -1,6 +1,6 @@
 # Goal Session Template
 
-Template for `session.md` — the persistent record of an autogoal session.
+Template for `session.md` — the persistent record of an autogoal session. Create at `<session_dir>/session.md` during Phase 3.
 
 ---
 
@@ -15,8 +15,8 @@ Template for `session.md` — the persistent record of an autogoal session.
 
 ```yaml
 goal: <specific objective>
-success_criteria: <how to know it is done>
-constraints: <must not change / boundaries>
+success_criteria: <measurable completion condition>
+constraints: <boundaries / must-not-change>
 domain_type: <domain>
 project_root: <absolute path>
 scope: <path or "same as project_root">
@@ -31,82 +31,34 @@ max_no_improve: <N>
 
 ## Locks
 
-| Lock | Value | Set At |
-|------|-------|--------|
-| Domain | <domain> | Session start |
-| Project Root | <path> | Session start |
-| Scope | <path> | Session start |
+| Lock | Value |
+|------|-------|
+| Domain | <domain> |
+| Project Root | <path> |
+| Scope | <path> |
 
-**These locks cannot be changed during the session.**
-
-## Session Files
-
-| File | Purpose |
-|------|---------|
-| `session.md` | This file — goal spec and session log |
-| `results.tsv` | Iteration log with scores |
-| `resume.md` | Recovery state for context loss |
-| `outputs/` | Iteration artifacts |
-| `domain/` | Domain-specific work |
-| `logs/` | Verbose logs |
+**Locked at session start. Cannot change.**
 
 ## Iteration Log
 
-<!-- Updated after each iteration -->
-
-| Iter | ID | Score | Delta | Status | Description |
-|------|-------|-------|--------|--------|-------------|
-| 0 | - | X | - | baseline | Initial state |
-| 1 | abc123 | Y | +Z | keep | [what changed] |
-| ... | | | | |
+| Iter | Score | Delta | Status | Description |
+|------|-------|-------|--------|-------------|
+| 0 | X | - | baseline | Initial state |
 
 ## Events
 
-<!-- Log significant events -->
-
 - **<timestamp>**: Session started
 - **<timestamp>**: Baseline captured (score=X)
-- **<timestamp>**: Soft pivot triggered at iter N
-- **<timestamp>**: Goal met / Stagnated / User stopped
 
 ## Handoff Notes
 
-<!-- Written when session pauses or completes -->
+### On Completion
 
-### Boundary Handoff (if applicable)
-
-**Reason:** <why current loop cannot continue>
-**Recommended next domain:** <domain>
-**Artifacts to carry forward:**
-- <file>
-
-**Blocked on:**
-- <issue>
-
-**Next-loop suggestion:**
-- <one sentence>
-
-### Completion Notes
-
-**Final state:**
-- Best score: X (iter N)
-- Improvement: +Y% from baseline
-- Status: <goal met | stagnated | user stopped>
+**Final state:** best score X (iter N), improvement +Y% from baseline
+**Status:** <goal met | stagnated | scope boundary | user stopped>
 
 **Key changes:**
 1. <change> — <impact>
-2. <change> — <impact>
 
-**Remaining work:**
-- <if any>
+**Remaining work:** <if any>
 ```
-
----
-
-## Usage
-
-1. Create this file at `<session_dir>/session.md` during Phase 3 (Session Setup)
-2. Fill in the Goal Specification from the clarified goal
-3. Update the Iteration Log after each iteration
-4. Add Events as they occur
-5. Write Handoff Notes when pausing or completing
