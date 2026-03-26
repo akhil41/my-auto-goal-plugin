@@ -42,6 +42,8 @@ Agent({
 })
 ```
 
+**Subagent fallback:** If subagents return empty or failed results (WebSearch/WebFetch can fail due to permissions or model limitations), the lead must perform the research directly or try alternative data sources. See the domain-specific loop guide for fallback details.
+
 **Non-negotiable rules:**
 - Project boundary locked to starting directory — never write outside it
 - Domain locked at startup — no switching mid-loop
@@ -127,9 +129,11 @@ Use AskUserQuestion with options ["Yes, proceed", "Modify first"] to get approva
 ├── session.md       # goal spec + session log
 ├── results.tsv      # iter, id, score, delta, status, description
 ├── resume.md        # recovery state (overwritten each iteration)
-├── outputs/         # iteration artifacts
-└── domain/          # domain-specific work
+├── outputs/         # iteration artifacts (research-v1.md, etc.)
+└── domain/          # domain-specific work (subagent outputs go here)
 ```
+
+**Create ALL directories:** `outputs/` and `domain/` must exist before dispatching subagents. For research, also create `domain/research/` for subagent write targets.
 
 2. Initialize `results.tsv` with header: `iter\tid\tscore\tdelta\tstatus\tdescription`
 3. For code/app/debug/web-seo: create branch `autogoal/<YYYYMMDD-HHMMSS>`
@@ -228,7 +232,12 @@ Full log: <session_dir>/results.tsv
 
 ## Domain Guides
 
-Read the relevant guide when starting a loop:
+Read the relevant guide when starting a loop. Loop files are in the same plugin directory as this SKILL.md:
+
+```
+# Find loop files relative to SKILL.md
+Glob({ pattern: "**/.claude/skills/my-auto-goal/loops/<domain_type>.md", path: "~/.claude/plugins/cache/my-auto-goal-plugin" })
+```
 
 | Domain | Guide | Key pattern |
 |--------|-------|-------------|

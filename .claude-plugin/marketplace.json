@@ -13,7 +13,7 @@
       "name": "my-auto-goal-plugin",
       "description": "Autonomous goal-achievement loop for research, code, debug, app, content, and web-seo work",
       "source": "./",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "category": "productivity",
       "tags": ["autonomous", "research", "autoresearch", "loop", "goal"]
     }

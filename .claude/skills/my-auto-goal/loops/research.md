@@ -30,6 +30,24 @@ Agent({
 
 Each subagent: max 5 searches, max 5 URL fetches. Stay focused on assigned question.
 
+### Subagent Failure Handling
+
+WebSearch and WebFetch may fail due to permissions, model limitations, or blocked domains. Plan for this:
+
+**If subagents return empty/failed results:**
+1. Lead performs web research directly using WebSearch and WebFetch (lead has more reliable tool access)
+2. If WebSearch fails, try WebFetch on known-good URLs (GitHub repos, official docs, HuggingFace)
+3. If WebFetch also fails, use knowledge-based synthesis and clearly mark confidence as "Low — no live web data"
+
+**URLs that tend to work:** GitHub repos, HuggingFace model cards, official documentation sites, Wikipedia.
+**URLs that tend to fail:** Reddit, news sites behind paywalls, forums requiring auth, sites with aggressive bot protection.
+
+**Never silently accept empty results.** If a subagent returns nothing useful, acknowledge the gap and try alternative sources.
+
+## Baseline (Iteration 0)
+
+For research, the baseline is "no research exists yet" — score it **0**. This gives a clean starting point. Log: `0\t-\t0\t-\tbaseline\tNo research yet`
+
 ## Rubric (Self-Scoring)
 
 | Dimension | 0-25 | Criteria |

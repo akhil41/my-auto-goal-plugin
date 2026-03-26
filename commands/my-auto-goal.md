@@ -23,9 +23,17 @@ Where `<plugin-skills-dir>` is the `.claude/skills` directory inside this plugin
 Glob({ pattern: "**/.claude/skills/my-auto-goal/SKILL.md", path: "~/.claude/plugins/cache/my-auto-goal-plugin" })
 ```
 
-## Step 2: Follow SKILL.md phases exactly
+## Step 2: Read the domain-specific loop guide
 
-After reading SKILL.md, execute its phases in strict order:
+After reading SKILL.md and determining the domain, read the loop guide:
+
+```
+Glob({ pattern: "**/.claude/skills/my-auto-goal/loops/<domain_type>.md", path: "~/.claude/plugins/cache/my-auto-goal-plugin" })
+```
+
+## Step 3: Follow SKILL.md phases exactly
+
+After reading SKILL.md and the loop guide, execute phases in strict order:
 1. Phase 1: Goal Clarification — use AskUserQuestion
 2. Phase 2: Plan Brief & Approval — present brief, get approval
 3. Phase 3: Session Setup — create session directory and files
