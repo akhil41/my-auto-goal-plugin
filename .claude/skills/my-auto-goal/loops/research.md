@@ -50,14 +50,18 @@ For research, the baseline is "no research exists yet" — score it **0**. This 
 
 ## Rubric (Self-Scoring)
 
-| Dimension | 0-25 | Criteria |
-|-----------|------|----------|
-| Completeness | 0-25 | Covers all required aspects? |
-| Accuracy | 0-25 | Claims supported by sources? |
-| Clarity | 0-25 | Well-organized and readable? |
-| Actionability | 0-25 | Someone can act on this? |
+| Dimension | 0-5 (Absent) | 6-12 (Weak) | 13-18 (Adequate) | 19-22 (Strong) | 23-25 (Excellent) |
+|-----------|-------------|-------------|-------------------|-----------------|-------------------|
+| Completeness | No research or major topics missing | Most topics touched but thin | All required aspects covered, some gaps | Thorough coverage with comparisons | Comprehensive — nothing missing, good depth |
+| Accuracy | No sources, unsupported claims | Some sources, many unqualified | Mostly sourced, key claims verified | Well-sourced, confidence levels noted | All claims sourced, uncertainties flagged |
+| Clarity | Disorganized, hard to parse | Structure exists but rough | Clear sections, some flow issues | Easy to read, good structure and transitions | Executive summary alone is actionable |
+| Actionability | Abstract only, no recommendations | Some advice but vague or generic | Concrete recommendations for some scenarios | Clear next steps with trade-offs | Decision-ready with comparison tables, specific guidance |
 
-Score consistently. Document reasoning. Compare to previous iteration.
+**Scoring rules:**
+- Score each dimension independently using the bands above
+- Compare directly to the previous version
+- Total = sum of all four dimensions (0-100)
+- Record per-dimension scores in session.md iteration log
 
 ## Source Quality
 
@@ -77,6 +81,10 @@ Score consistently. Document reasoning. Compare to previous iteration.
 5. Log `✅ KEEP: [change] Rubric: X→Y (+Z)` or `❌ DISCARD: [change] Rubric: X→Y (-Z)`
 
 ## Output Structure
+
+Write research artifacts to `<session_dir>/outputs/`: `research-v1.md`, `research-v2.md`, etc.
+- `<session_dir>` = the `.autogoal-<YYYYMMDD-HHMMSS>/` directory created in Phase 3
+- **On success:** Copy the best-scoring version to `research-final.md` in the same `outputs/` directory
 
 ```markdown
 # [Research Topic]

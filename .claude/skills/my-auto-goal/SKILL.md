@@ -44,6 +44,12 @@ Agent({
 
 **Subagent fallback:** If subagents return empty or failed results (WebSearch/WebFetch can fail due to permissions or model limitations), the lead must perform the research directly or try alternative data sources. See the domain-specific loop guide for fallback details.
 
+**Background agent polling:** When dispatching agents with `run_in_background: true`:
+- You will be notified automatically when background agents complete — do NOT poll or sleep-wait
+- If you need results before proceeding, wait for the notification
+- If results aren't critical for the current step, proceed with the lead's own knowledge and incorporate agent findings when they arrive
+- Mark any claims made without agent verification as lower confidence
+
 **Non-negotiable rules:**
 - Project boundary locked to starting directory — never write outside it
 - Domain locked at startup — no switching mid-loop
@@ -160,7 +166,7 @@ ITERATE (iter >= 1):
   4. Evaluate (run eval or self-score)
   5. Compute delta → apply keep/discard
   6. Log to results.tsv + update resume.md
-  7. Check stopping conditions
+  7. Check stopping conditions → if goal met, generate Final Report and stop
   8. Continue
 ```
 
@@ -182,15 +188,22 @@ Delta is direction-aware: `delta = current - best` (higher-is-better) or `delta 
 | debug | bug_status: 0 (reproduces), 50 (partial), 100 (fixed + test added) |
 | research/content | Rubric self-score: Completeness + Accuracy + Clarity + Actionability = 0-100 |
 
+**Rubric dimension tracking (research/content):**
+- Record per-dimension scores in each iteration's log entry in `session.md` (not just totals)
+- Include dimension breakdown in `resume.md` so recovery sessions know which dimension to target next
+- See `loops/content.md` or `loops/research.md` for scoring band definitions
+
 ### Stopping Conditions
 
 | Condition | Action |
 |-----------|--------|
-| Goal met (score meets success_criteria) | Final report → stop |
+| Goal met (score meets success_criteria) | **MUST** generate Final Report (see below) → update session.md handoff notes → stop |
 | Soft pivot (N consecutive no-improve) | Try meaningfully different approach, don't reset counter |
 | Hard pause (max_no_improve reached) | Ask user: continue with new direction, or stop? |
 | Scope boundary reached | Write handoff note → stop |
 | User stop | Final report → stop |
+
+**On goal met:** Do NOT silently continue or skip the report. The final report is a mandatory output.
 
 ## Scope Verification
 
@@ -211,6 +224,8 @@ If context is compacted:
 
 ## Final Report
 
+**MANDATORY** — Generate this report and present it to the user whenever the loop ends (goal met, stagnation, user stop, or scope boundary). For content/research domains, also copy the best artifact to a `-final` version (e.g., `content-final.md`, `research-final.md`).
+
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 AUTOGOAL SESSION COMPLETE
@@ -226,6 +241,7 @@ Top improvements:
 1. iter N — <description> (+X)
 2. iter N — <description> (+X)
 
+Final artifact: <path to final output>
 Full log: <session_dir>/results.tsv
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
